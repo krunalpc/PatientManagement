@@ -1,0 +1,179 @@
+<br/>
+<h3 class="text-primary">Patient Details</h3>
+<hr>
+
+    <div class="form-group row">
+        <label for="Patient name" class="col-sm-2 col-form-label">Patient name</label>
+        <div class="col-sm-1">
+            <!-- <select class="form-control" formControlName="Salutation"> -->
+            <select class="form-control" [(ngModel)]="PatientSalutation" (change)="changeGender(this.PatientSalutation)">
+                <option >Select </option>
+                <option *ngFor="let Salutation of Salutations">
+                    {{Salutation}}
+                </option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" placeholder="Patient name" [(ngModel)]="PatientName">
+        </div>
+        <div class="col-sm-1">
+            <label for="Gender" class="col-sm-2 col-form-label">Gender</label>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                <input id="male" type="radio" value="male" name="gender" formControlName="gender" [(ngModel)]="gender">
+                <label for="male">Male</label>
+             </div>
+          
+             <div>
+                <input id="female" type="radio" value="female" name="gender" formControlName="gender" [(ngModel)]="gender">
+                <label for="female">Female</label>
+             </div>
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="DOB" class="col-sm-2 col-form-label">DOB</label>
+        <div class="col-sm-4">
+            <input placeholder="DOB" type="text" id="date-picker-example" class="form-control datepicker" [(ngModel)]="DOB">
+        </div>
+        <div class="col-sm-1">
+            <label for="Age" class="col-sm-2 col-form-label">Age</label>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="Age" [(ngModel)]="Age">
+        </div>
+        <div class="col-sm-2">
+            <select class="form-control" [(ngModel)]="AgeType">
+                <option >Select </option>
+                <option *ngFor="let age of ageType">
+                    {{age}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+
+        <label for="Appointment Date" class="col-sm-2 col-form-label">Appointment Date</label>
+        <div class="col-sm-4">
+            <input placeholder="Appointment date" type="text" id="date-picker-example" class="form-control datepicker" [(ngModel)]="AppointmentDate" >
+        </div>
+        <div class="col-sm-2">
+            <label for="Age" class="col-sm-3 col-form-label">Phone No</label>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" placeholder="Phone No" [(ngModel)]="PhoneNumber">
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label for="Address" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Street Address" [(ngModel)]="Address">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Address 2" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Street Address 2" [(ngModel)]="Address2">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" placeholder="City" [(ngModel)]="City">
+        </div>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" placeholder="State / Province" [(ngModel)]="State">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" placeholder="Postal / Zip Code" [(ngModel)]="Postal">
+        </div>
+        <div class="col-sm-5">
+            <select class="form-control" [(ngModel)]="Country">
+                <option >Select </option>
+                <option *ngFor="let country of countryList">
+                    {{country}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <br/>
+    <h3 class="text-primary">Medical Scan Details</h3>
+    <hr>
+
+    <div >
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        <div class="col-sm-1">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Scan List</label>
+                        </div>
+                        Sno</th>
+                    <th>
+                        <div class="d-flex flex-row">
+                            <input [(ngModel)]="Medical_Billing_Filter" class="form-control"
+                            (keyup)="FilterFn()" placeholder="Filter">   
+                            
+                            <button type="button" class="btn btn-light"
+                                (click)="sortResult('Medical_Billing',true)">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="btn btn-light"
+                                (click)="sortResult('Medical_Billing',false)">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
+                                </svg>
+                            </button>
+
+                        </div>
+                        Scan Name</th>
+                    <th scope="col">
+                        <div class="col-sm-1">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Scan Amount</label>
+                        </div>
+                        Scan Amount</th>
+                    <th scope="col">
+                        <div class="col-sm-1">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Discount</label>
+                        </div>
+                        Discount</th>
+                    <th scope="col">
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputPassword" >
+                        </div>
+                        Total Amount</th>
+                        <div class="col-sm-1">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dataItem of MedicalBillingList; let ndx = index">
+                    <td  scope="row">{{ndx+1}}</td>
+                    <th>{{dataItem.Medical_Billing}}</th>
+                    <td>{{dataItem.Amount}}</td>
+                    <td>{{dataItem.Max_Discount}}</td>
+                    <td>{{dataItem.Discount_Unit }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary" value="Submit" (click)="addPatientDetails()">Save</button>
+    </div>
+

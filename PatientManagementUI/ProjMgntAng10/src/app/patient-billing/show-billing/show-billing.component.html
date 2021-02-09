@@ -1,0 +1,127 @@
+<br/>
+<h3 class="text-primary">Patient Billing</h3>
+<hr>
+
+<div class="form-group row">
+    <div class="col-sm-5">
+        <label for="inputPassword" class="col-sm-5 col-form-label">Current Billing Status : </label>
+    </div>
+    <div class="col-sm-5">
+        <label for="inputPassword" class="col-sm-5 col-form-label">Previous Transaction : </label>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-5">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="col">Patient Name</th>
+                    <td>{{PatientBillingDetail[0].name}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">PatientID</th>
+                    <td [(ngModel)]="PatientID">{{PatientBillingDetail[0].PATIENT_ID}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Age/Gender</th>
+                    <td>{{PatientBillingDetail[0].age}}/{{PatientBillingDetail[0].gender}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Total Amount</th>
+                    <td>{{PatientBillingDetail[0].total_amount}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Discount</th>
+                    <td>{{PatientBillingDetail[0].total_discount}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Paid Amount</th>
+                    <td>{{PatientBillingDetail[0].paid_amount}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Balance</th>
+                    <td>{{PatientBillingDetail[0].balance}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-5">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Paid Amount</th>
+                    <th scope="col">Payment Mode</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dataItem of PatientBillingDetail; let ndx = index">
+                    <th scope="row">{{ndx+1}}</th>
+                    <td>{{dataItem.payment_date | date: "shortDate" }}</td>
+                    <td>{{dataItem.Paid_Amount_child }}</td>
+                    <td>{{dataItem.mode_of_payment}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-4">
+        <label for="inputPassword" class="col-sm-5 col-form-label">Payable Amount: </label>
+    </div>
+    <div class="col-sm-3">
+        <input type="text" id="date-picker-example" class="form-control datepicker" placeholder="Enter Amount" [(ngModel)]="PayableAmount">
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-4">
+        <label for="inputPassword" class="col-sm-5 col-form-label">Payment Mode: </label>
+    </div>
+    <div class="col-sm-3">
+        <select id="inputState" class="form-control" [(ngModel)]="PaymentMode">
+            <option >Select </option>
+            <option *ngFor="let Card of CardType">
+                {{Card}}
+            </option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-7">
+        <input type="text" id="date-picker-example" class="form-control datepicker" placeholder="Cardholder's Name">
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-7">
+        <input type="text" id="date-picker-example" class="form-control datepicker" placeholder="Card Number">
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="form-group">
+        <label for="formGroupExampleInput">Expiry</label>
+    </div>
+    <div class="col-sm-3">
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="MM/YYYY">
+    </div>
+    <div class="col-sm-2">
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="CVC">
+    </div>
+    <div class="col-sm-2">
+        <label for="formGroupExampleInput2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+          </svg>128-bit secured</label>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-7">
+        <button type="submit" class="btn btn-primary" (click)="addBillingInfo()">Save</button>
+    </div>
+</div>
